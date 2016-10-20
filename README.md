@@ -26,7 +26,17 @@ $cmb->add_field( array(
 	'select_type' => 'radio',
 	// Will replace any selection with selection from modal. Default is 'add'
 	'select_behavior' => 'replace',
+	// To display the title of the attached post instead of the just the ID
+	'after'		  => 'cmb2_attached_post_name',
 ) );
+function cmb2_attached_post_name( $field_args, $field ) {
+    		if ( $field->value ) {
+    			$post_title = get_the_title($field->value);
+    			echo '<p>Post attached: <strong>' . $post_title . '</strong></p>';	
+    		} else {
+        		echo '<p>please attach a post</p>';
+    		}
+		}
 ```
 
 ## Screenshots
